@@ -14,6 +14,13 @@ Um arquivo, sem build, sem JavaScript. Fontes auto-hospedadas: a página não de
 
 Os dois cartões de WhatsApp caem no mesmo número, então cada um leva uma mensagem pronta diferente: é o que diz ao Yuri, na primeira linha da conversa, por qual porta a pessoa entrou. Para tirar, apague tudo a partir do `?` no `href`.
 
+## Dois formatos de cartão
+
+- **Com capa** (`.link--capa`): foto na largura toda, texto embaixo. É o formato de quem precisa provar o que faz. Está no cartão de palestras e é para onde vai o do escritório quando a foto chegar.
+- **Sem capa:** ícone à esquerda, texto ao lado. Fica no formulário de aplicação, que não tem foto para mostrar.
+
+Para passar o cartão do escritório ao formato de capa: adicione `link--capa` na classe do `<a>` e troque o `<svg>` do `.link__midia` pelo mesmo `<picture>` do cartão de palestras. A foto entra em `1.85:1` (por exemplo 820x443) — a mesma proporção do slot, para não ser recortada de novo.
+
 ## Editar
 
 - **Links:** `index.html`, procure por `LINK 1`, `LINK 2`, `LINK 3`.
@@ -26,8 +33,9 @@ Os dois cartões de WhatsApp caem no mesmo número, então cada um leva uma mens
 
 ## Pendências
 
-1. **Domínio.** As URLs absolutas apontam para `yuri-links.vercel.app`. Ao apontar um domínio próprio, trocar no `<link rel="canonical">`, no `og:url` e no `og:image` — sem URL absoluta o WhatsApp entrega o link sem imagem.
-2. **Rodapé.** Está com o CNPJ da Carteira 360º, tirado da página da Imersão. Confirmar se é esse ou o do escritório, e se entra o @ do Instagram.
+1. **Foto do escritório**, para o primeiro cartão virar capa como o de palestras.
+2. **Domínio.** As URLs absolutas apontam para `yuri-links.vercel.app`. Ao apontar um domínio próprio, trocar no `<link rel="canonical">`, no `og:url` e no `og:image` — sem URL absoluta o WhatsApp entrega o link sem imagem.
+3. **Rodapé.** Está com o CNPJ da Carteira 360º, tirado da página da Imersão. Confirmar se é esse ou o do escritório, e se entra o @ do Instagram.
 
 ## Medição
 

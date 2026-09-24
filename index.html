@@ -135,8 +135,9 @@
 
         .topo__foto {
             position: relative;
-            /* teto de altura: os três links precisam caber sem rolagem no celular */
-            height: min(46svh, 380px);
+            /* com cartão de capa na lista, o retrato cede altura para a
+   primeira foto aparecer sem rolagem */
+            height: min(40svh, 330px);
             /* o corte de 2,5° é a assinatura da página da Imersão */
             clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--corte)));
         }
@@ -232,10 +233,15 @@
         .link {
             position: relative;
             display: grid;
-            grid-template-columns: 42px 1fr 16px;
+            grid-template-columns: 68px 1fr 16px;
             align-items: center;
-            gap: 14px;
-            padding: 18px 18px 18px 20px;
+            gap: 0 15px;
+            padding-right: 18px;
+            /* altura igual nos três, com uma ou duas linhas de descrição:
+   a copy pode mudar sem desalinhar a fileira */
+            min-height: 94px;
+            /* a foto do slot precisa respeitar a borda do cartão */
+            overflow: hidden;
             background: var(--marinho-700);
             border: 1px solid rgba(154, 166, 186, 0.18);
             text-decoration: none;
@@ -295,19 +301,105 @@
             outline-offset: 3px;
         }
 
-        .link__icone {
-            width: 42px;
-            height: 42px;
+        /* slot da esquerda: recebe foto ou ícone na mesma largura e na mesma
+   altura, para os três cartões manterem a coluna alinhada */
+
+        .link__midia {
+            align-self: stretch;
             display: grid;
             place-items: center;
             background: rgba(0, 113, 188, 0.14);
             color: var(--destaque-500);
+            overflow: hidden;
         }
 
-        .link__icone svg {
+        .link__midia svg {
             width: 21px;
             height: 21px;
             display: block;
+        }
+
+        .link__midia img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* o rosto fica no terço de cima da foto */
+            object-position: 50% 16%;
+            display: block;
+            transition: transform 260ms ease-out;
+        }
+
+        .link:hover .link__midia img,
+        .link:focus-visible .link__midia img {
+            transform: scale(1.05);
+        }
+
+        .link__texto {
+            padding: 14px 0;
+        }
+
+        /* ------------------------------------------------------------
+   Cartão com capa: a foto ocupa a largura toda e o texto vem embaixo.
+   É o formato de quem precisa provar o que faz — palestra, escritório.
+   O cartão sem foto (formulário) fica na versão de cima.
+   ------------------------------------------------------------ */
+
+        .link--capa {
+            grid-template-columns: 1fr 16px;
+            grid-template-areas:
+                "capa capa"
+                "texto seta";
+            align-items: start;
+            min-height: 0;
+        }
+
+        /* proporção, não altura fixa: a foto não é recortada de novo quando
+   o cartão fica mais largo */
+
+        .link--capa .link__midia {
+            grid-area: capa;
+            aspect-ratio: 1.85;
+            background: var(--marinho-900);
+        }
+
+        .link--capa .link__texto {
+            grid-area: texto;
+            padding: 15px 0 17px 20px;
+        }
+
+        .link--capa .link__seta {
+            grid-area: seta;
+            align-self: center;
+            margin-bottom: 2px;
+        }
+
+        /* o filete de ação só corre ao lado do texto: atravessar a foto
+   inteira dava a ela uma moldura que ela não pediu */
+
+        .link--capa::before {
+            display: none;
+        }
+
+        .link--capa .link__texto {
+            position: relative;
+        }
+
+        .link--capa .link__texto::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--acao-500);
+            transform: scaleY(0.4);
+            transform-origin: 50% 0;
+            transition: transform 220ms ease-out;
+        }
+
+        .link--capa:hover .link__texto::before,
+        .link--capa:focus-visible .link__texto::before {
+            transform: scaleY(1);
         }
 
         .link__titulo {
@@ -380,15 +472,25 @@
                 padding-inline: 14px;
             }
 
-            .link {
-                grid-template-columns: 36px 1fr 14px;
-                gap: 11px;
-                padding: 16px 14px 16px 16px;
+            /* :not(.link--capa) porque o cartão de capa tem grade própria e
+   esta regra, vindo depois, sobrescreveria a dele */
+
+            .link:not(.link--capa) {
+                grid-template-columns: 56px 1fr 14px;
+                gap: 0 12px;
+                min-height: 86px;
             }
 
-            .link__icone {
-                width: 36px;
-                height: 36px;
+            .link {
+                padding-right: 14px;
+            }
+
+            .link--capa .link__texto {
+                padding-left: 16px;
+            }
+
+            .link__texto {
+                padding: 12px 0;
             }
 
             .link__titulo {
@@ -455,7 +557,9 @@
                  diz ao Yuri, na primeira linha da conversa, por qual porta a
                  pessoa entrou. Para tirar, apague tudo a partir do "?". -->
             <a class="link" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20falar%20sobre%20a%20contabilidade%20da%20minha%20empresa." target="_blank" rel="noopener">
-                <span class="link__icone" aria-hidden="true">
+                <!-- entra a foto do escritório quando ela chegar, no mesmo
+                     formato do cartão de palestras -->
+                <span class="link__midia" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 21h18" />
                         <path d="M5 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16" />
@@ -463,45 +567,44 @@
                         <path d="M8 8h4M8 12h4M8 16h4" />
                     </svg>
                 </span>
-                <span>
+                <span class="link__texto">
                     <span class="link__titulo">Falar com o escritório</span>
-                    <span class="link__linha">Contabilidade da sua empresa.</span>
+                    <span class="link__linha">Te ajudamos a faturar mais e melhor.</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
                 </svg>
             </a>
 
-            <!-- LINK 2 · FORMULÁRIO DE APLICAÇÃO -->
+            <!-- LINK 2 · PALESTRAS (mesmo WhatsApp do link 1, outra mensagem) -->
+            <a class="link link--capa" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
+                <span class="link__midia">
+                    <picture>
+                        <source srcset="img/palestras.webp" type="image/webp">
+                        <img src="img/palestras.jpg" width="820" height="443" alt="Yuri Reis com microfone, palestrando em um evento" loading="lazy" decoding="async">
+                    </picture>
+                </span>
+                <span class="link__texto">
+                    <span class="link__titulo">Convidar para palestrar</span>
+                    <span class="link__linha">Yuri no palco do seu evento.</span>
+                </span>
+                <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h13M12 5l7 7-7 7" />
+                </svg>
+            </a>
+
+            <!-- LINK 3 · FORMULÁRIO DE APLICAÇÃO -->
             <a class="link" href="https://quiz.carteira360.com.br" target="_blank" rel="noopener">
-                <span class="link__icone" aria-hidden="true">
+                <span class="link__midia" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M9 4H7a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2" />
                         <rect x="9" y="2.5" width="6" height="3.2" rx="1" />
                         <path d="M9 11h6M9 15h4" />
                     </svg>
                 </span>
-                <span>
+                <span class="link__texto">
                     <span class="link__titulo">Formulário de aplicação</span>
-                    <span class="link__linha">Primeiro passo no Carteira 360º.</span>
-                </span>
-                <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M5 12h13M12 5l7 7-7 7" />
-                </svg>
-            </a>
-
-            <!-- LINK 3 · PALESTRAS (mesmo WhatsApp do link 1, outra mensagem) -->
-            <a class="link" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
-                <span class="link__icone" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="9" y="2" width="6" height="11" rx="3" />
-                        <path d="M5 11a7 7 0 0 0 14 0" />
-                        <path d="M12 18v4M9 22h6" />
-                    </svg>
-                </span>
-                <span>
-                    <span class="link__titulo">Convidar para palestrar</span>
-                    <span class="link__linha">Yuri no palco do seu evento.</span>
+                    <span class="link__linha">Primeiro passo na Carteira 360º.</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
