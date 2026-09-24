@@ -4,6 +4,16 @@ Página de links (estilo Linktree) do Yuri Reis, na identidade visual da página
 
 Um arquivo, sem build, sem JavaScript. Fontes auto-hospedadas: a página não depende do Google Fonts.
 
+## Os três links
+
+| Cartão | Destino |
+| --- | --- |
+| Falar com o escritório | `wa.me/5535997720153` com mensagem pronta sobre contabilidade |
+| Formulário de aplicação | `quiz.carteira360.com.br` |
+| Convidar para palestrar | `wa.me/5535997720153` com mensagem pronta sobre palestra |
+
+Os dois cartões de WhatsApp caem no mesmo número, então cada um leva uma mensagem pronta diferente: é o que diz ao Yuri, na primeira linha da conversa, por qual porta a pessoa entrou. Para tirar, apague tudo a partir do `?` no `href`.
+
 ## Editar
 
 - **Links:** `index.html`, procure por `LINK 1`, `LINK 2`, `LINK 3`.
@@ -14,11 +24,10 @@ Um arquivo, sem build, sem JavaScript. Fontes auto-hospedadas: a página não de
   O enquadramento fino fica no CSS, em `.topo__foto img { object-position }`.
 - **Preview de link (WhatsApp, Instagram):** `img/og.jpg` sai de `og.html`. Para regerar, abra `og.html` em 1200x630 e capture a tela.
 
-## Antes de publicar
+## Pendências
 
-1. Trocar os três `href="#"` pelos destinos reais.
-2. Escrever a linha do Inlead (está com `[A PREENCHER]`).
-3. Trocar `https://EXEMPLO.com.br/` pelo domínio final no `<link rel="canonical">` e nas metatags `og:` — sem URL absoluta o WhatsApp entrega o link sem imagem.
+1. **Domínio.** As URLs absolutas apontam para `yuri-links.vercel.app`. Ao apontar um domínio próprio, trocar no `<link rel="canonical">`, no `og:url` e no `og:image` — sem URL absoluta o WhatsApp entrega o link sem imagem.
+2. **Rodapé.** Está com o CNPJ da Carteira 360º, tirado da página da Imersão. Confirmar se é esse ou o do escritório, e se entra o @ do Instagram.
 
 ## Medição
 

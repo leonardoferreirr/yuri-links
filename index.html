@@ -6,28 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
     <title>Yuri Reis · Links</title>
-    <meta name="description" content="Escritório de contabilidade, Inlead e palestras. Escolha por onde você quer falar com o Yuri Reis.">
+    <meta name="description" content="Ajudo sua empresa a vender mais e pagar menos impostos. Escritório de contabilidade, formulário de aplicação do Carteira 360º e palestras.">
 
     <!-- ============================================================
      PENDÊNCIAS ANTES DE PUBLICAR
-     1. LINKS: os três href estão como "#". Trocar pelos destinos reais
-        (procure por LINK 1, LINK 2, LINK 3 no markup).
-     2. INLEAD: confirmar a linha de descrição e o ícone. Escrevi uma
-        linha provisória porque falta a definição do produto.
-     3. Rodapé: confirmar se entra o @ do Instagram.
-     4. Preview de link (og:image e URL canônica): trocar
-        https://EXEMPLO.com.br/ pelo domínio final antes de publicar,
-        senão o WhatsApp entrega o link sem imagem.
+     1. Domínio: as URLs absolutas abaixo apontam para o endereço da
+        Vercel. Ao apontar um domínio próprio, trocar nos três lugares
+        (canonical, og:url, og:image) — o WhatsApp descarta caminho
+        relativo em og:image e o link chega sem imagem.
+     2. Rodapé: confirmar se entra o @ do Instagram e se o CNPJ que
+        fica aqui é o da Carteira 360º ou o do escritório.
      ============================================================ -->
 
-    <link rel="canonical" href="https://EXEMPLO.com.br/">
-    <meta property="og:url" content="https://EXEMPLO.com.br/">
+    <link rel="canonical" href="https://yuri-links.vercel.app/">
+    <meta property="og:url" content="https://yuri-links.vercel.app/">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="pt_BR">
     <meta property="og:site_name" content="Yuri Reis">
     <meta property="og:title" content="Yuri Reis · Links">
-    <meta property="og:description" content="Escritório de contabilidade, Inlead e palestras. Escolha por onde você quer falar com o Yuri Reis.">
-    <meta property="og:image" content="https://EXEMPLO.com.br/img/og.jpg">
+    <meta property="og:description" content="Ajudo sua empresa a vender mais e pagar menos impostos. Escritório, formulário de aplicação e palestras.">
+    <meta property="og:image" content="https://yuri-links.vercel.app/img/og.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Yuri Reis">
@@ -188,6 +186,7 @@
             right: 0;
             bottom: 0;
             padding: 0 24px calc(var(--corte) + 10px);
+            text-align: center;
         }
 
         .nome {
@@ -201,12 +200,18 @@
         }
 
         .posicionamento {
-            margin: 8px 0 0;
+            margin: 9px auto 0;
             font-size: 15px;
             line-height: 1.5;
             color: var(--texto-claro-fraco);
-            text-wrap: pretty;
-            max-width: 30ch;
+            max-width: 31ch;
+        }
+
+        /* a frase quebra onde o sentido pede, não onde a caixa termina:
+   cada metade é uma unidade que só se parte se a tela for estreita demais */
+
+        .posicionamento span {
+            display: inline-block;
         }
 
         .posicionamento strong {
@@ -367,6 +372,34 @@
    6 · TELAS MAIORES  (o formato não muda: é um cartão, não um site)
    ============================================================ */
 
+        /* iPhone SE e afins: a caixa de texto do cartão fica sem largura
+   para o título em uma linha. Aperta o que é moldura, não o texto. */
+
+        @media (max-width: 359px) {
+            .links {
+                padding-inline: 14px;
+            }
+
+            .link {
+                grid-template-columns: 36px 1fr 14px;
+                gap: 11px;
+                padding: 16px 14px 16px 16px;
+            }
+
+            .link__icone {
+                width: 36px;
+                height: 36px;
+            }
+
+            .link__titulo {
+                font-size: 15.5px;
+            }
+
+            .link__linha {
+                font-size: 13px;
+            }
+        }
+
         @media (min-width: 620px) {
             :root {
                 --corte: 26px;
@@ -411,14 +444,17 @@
 
             <div class="identidade">
                 <h1 class="nome">Yuri Reis</h1>
-                <p class="posicionamento">Contador. Ajudo donos de empresa a <strong>enxergar a margem antes de decidir</strong>.</p>
+                <p class="posicionamento"><span>Ajudo sua empresa a <strong>vender mais</strong></span> <span><strong>e pagar menos impostos</strong> 🚀</span></p>
             </div>
         </header>
 
         <main class="links">
 
-            <!-- LINK 1 · ESCRITÓRIO -->
-            <a class="link" href="#">
+            <!-- LINK 1 · ESCRITÓRIO (WhatsApp)
+                 Os links 1 e 3 caem no mesmo número. A mensagem pronta é o que
+                 diz ao Yuri, na primeira linha da conversa, por qual porta a
+                 pessoa entrou. Para tirar, apague tudo a partir do "?". -->
+            <a class="link" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20falar%20sobre%20a%20contabilidade%20da%20minha%20empresa." target="_blank" rel="noopener">
                 <span class="link__icone" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M3 21h18" />
@@ -428,32 +464,34 @@
                     </svg>
                 </span>
                 <span>
-                    <span class="link__titulo">Escritório</span>
-                    <span class="link__linha">Contabilidade e rotina fiscal.</span>
+                    <span class="link__titulo">Falar com o escritório</span>
+                    <span class="link__linha">Contabilidade da sua empresa.</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
                 </svg>
             </a>
 
-            <!-- LINK 2 · INLEAD -->
-            <a class="link" href="#">
+            <!-- LINK 2 · FORMULÁRIO DE APLICAÇÃO -->
+            <a class="link" href="https://quiz.carteira360.com.br" target="_blank" rel="noopener">
                 <span class="link__icone" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M3 5h18l-7 8v6l-4 2v-8z" />
+                        <path d="M9 4H7a1 1 0 0 0-1 1v15a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1h-2" />
+                        <rect x="9" y="2.5" width="6" height="3.2" rx="1" />
+                        <path d="M9 11h6M9 15h4" />
                     </svg>
                 </span>
                 <span>
-                    <span class="link__titulo">Inlead</span>
-                    <span class="link__linha">[A PREENCHER: o que é, em 4 palavras]</span>
+                    <span class="link__titulo">Formulário de aplicação</span>
+                    <span class="link__linha">Primeiro passo no Carteira 360º.</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
                 </svg>
             </a>
 
-            <!-- LINK 3 · PALESTRAS -->
-            <a class="link" href="#">
+            <!-- LINK 3 · PALESTRAS (mesmo WhatsApp do link 1, outra mensagem) -->
+            <a class="link" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
                 <span class="link__icone" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="9" y="2" width="6" height="11" rx="3" />
@@ -462,8 +500,8 @@
                     </svg>
                 </span>
                 <span>
-                    <span class="link__titulo">Palestras</span>
-                    <span class="link__linha">Para palestrar no seu evento.</span>
+                    <span class="link__titulo">Convidar para palestrar</span>
+                    <span class="link__linha">Yuri no palco do seu evento.</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
