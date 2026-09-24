@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+    <title>Yuri Reis · Links</title>
+    <meta name="description" content="Escritório de contabilidade, Inlead e palestras. Escolha por onde você quer falar com o Yuri Reis.">
+
+    <!-- ============================================================
+     PENDÊNCIAS ANTES DE PUBLICAR
+     1. LINKS: os três href estão como "#". Trocar pelos destinos reais
+        (procure por LINK 1, LINK 2, LINK 3 no markup).
+     2. INLEAD: confirmar a linha de descrição e o ícone. Escrevi uma
+        linha provisória porque falta a definição do produto.
+     3. Rodapé: confirmar se entra o @ do Instagram.
+     4. Preview de link (og:image e URL canônica): trocar
+        https://EXEMPLO.com.br/ pelo domínio final antes de publicar,
+        senão o WhatsApp entrega o link sem imagem.
+     ============================================================ -->
+
+    <link rel="canonical" href="https://EXEMPLO.com.br/">
+    <meta property="og:url" content="https://EXEMPLO.com.br/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:site_name" content="Yuri Reis">
+    <meta property="og:title" content="Yuri Reis · Links">
+    <meta property="og:description" content="Escritório de contabilidade, Inlead e palestras. Escolha por onde você quer falar com o Yuri Reis.">
+    <meta property="og:image" content="https://EXEMPLO.com.br/img/og.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Yuri Reis">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0B0A2E">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231B1464'/%3E%3Ctext x='32' y='46' font-family='Helvetica,Arial,sans-serif' font-size='40' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EY%3C/text%3E%3C/svg%3E">
+
+    <link rel="preload" href="fonts/plus-jakarta-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="image" href="img/yuri.webp" type="image/webp" fetchpriority="high">
+
+    <style>
+        /* ============================================================
+   1 · FONTES  (auto-hospedadas: a página não depende do Google)
+   ============================================================ */
+
+        @font-face {
+            font-family: "Plus Jakarta Sans";
+            font-style: normal;
+            font-weight: 400 800;
+            font-display: swap;
+            src: url(fonts/plus-jakarta-sans-latin.woff2) format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400 600;
+            font-display: swap;
+            src: url(fonts/inter-latin.woff2) format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* ============================================================
+   2 · TOKENS  (mesma paleta da página da Imersão)
+   ============================================================ */
+
+        :root {
+            --marinho-900: #0B0A2E;
+            --marinho-700: #14104A;
+            --marinho-500: #1B1464;
+            --aco-500: #5C6577;
+            /* cinza mínimo legível sobre o marinho: 4,9:1 no texto de 12px do rodapé */
+            --aco-400: #848DA0;
+            --aco-300: #9AA6BA;
+            --acao-500: #0071BC;
+            --destaque-500: #4FA3E3;
+            --texto-claro: #E6E8EE;
+            --texto-claro-fraco: #9AA6BA;
+            /* corte diagonal de 2,5°: tan(2,5°) ≈ 0,0436 */
+            --corte: 4.36vw;
+            --corte-ang: 2.5deg;
+            /* perfuração do bilhete: 3px traço, 4px espaço */
+            --perfuro-h: repeating-linear-gradient(to right, var(--aco-500) 0 3px, transparent 3px 7px);
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100svh;
+            background: var(--marinho-900);
+            color: var(--texto-claro);
+            font-family: "Inter", system-ui, -apple-system, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            letter-spacing: -0.006em;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
+            /* fade-in em CSS puro: se o JS falhar, a página não fica em branco */
+            animation: pagina-entrar 620ms ease-out both;
+        }
+
+        @keyframes pagina-entrar {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* o link-in-bio nasce no celular: a coluna nunca passa disso */
+
+        .pagina {
+            width: 100%;
+            max-width: 460px;
+            margin: 0 auto;
+            padding-bottom: calc(32px + env(safe-area-inset-bottom));
+            position: relative;
+        }
+
+        /* ============================================================
+   3 · CABEÇALHO  (retrato sangrando + corte diagonal da marca)
+   ============================================================ */
+
+        .topo {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .topo__foto {
+            position: relative;
+            /* teto de altura: os três links precisam caber sem rolagem no celular */
+            height: min(46svh, 380px);
+            /* o corte de 2,5° é a assinatura da página da Imersão */
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - var(--corte)));
+        }
+
+        .topo__foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* enquadra no rosto: sem isso o corte come a testa no celular */
+            object-position: 50% 14%;
+            display: block;
+        }
+
+        /* véu: funde o fundo do estúdio com o marinho e devolve contraste ao nome */
+
+        .topo__veu {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(to bottom,
+                    rgba(11, 10, 46, 0.10) 0%,
+                    rgba(11, 10, 46, 0.00) 26%,
+                    rgba(11, 10, 46, 0.62) 62%,
+                    rgba(11, 10, 46, 0.94) 88%,
+                    var(--marinho-900) 100%);
+            pointer-events: none;
+        }
+
+        /* linha perfurada acompanhando o corte, igual ao bilhete da Imersão */
+
+        .topo__perfuro {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 101%;
+            height: 1px;
+            background-image: var(--perfuro-h);
+            transform-origin: 0 100%;
+            transform: rotate(calc(var(--corte-ang) * -1));
+            opacity: 0.55;
+            pointer-events: none;
+        }
+
+        .identidade {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 0 24px calc(var(--corte) + 10px);
+        }
+
+        .nome {
+            margin: 0;
+            font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+            font-size: 34px;
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            color: #FFFFFF;
+        }
+
+        .posicionamento {
+            margin: 8px 0 0;
+            font-size: 15px;
+            line-height: 1.5;
+            color: var(--texto-claro-fraco);
+            text-wrap: pretty;
+            max-width: 30ch;
+        }
+
+        .posicionamento strong {
+            font-weight: 500;
+            color: var(--destaque-500);
+        }
+
+        /* ============================================================
+   4 · LINKS
+   ============================================================ */
+
+        .links {
+            display: grid;
+            gap: 12px;
+            padding: 26px 20px 0;
+        }
+
+        .link {
+            position: relative;
+            display: grid;
+            grid-template-columns: 42px 1fr 16px;
+            align-items: center;
+            gap: 14px;
+            padding: 18px 18px 18px 20px;
+            background: var(--marinho-700);
+            border: 1px solid rgba(154, 166, 186, 0.18);
+            text-decoration: none;
+            color: inherit;
+            transition: background 160ms linear, border-color 160ms linear, transform 160ms ease-out;
+            /* entrada em cascata: o cartão sobe depois da foto assentar */
+            animation: link-entrar 520ms ease-out both;
+        }
+
+        .link:nth-of-type(1) { animation-delay: 160ms; }
+        .link:nth-of-type(2) { animation-delay: 240ms; }
+        .link:nth-of-type(3) { animation-delay: 320ms; }
+
+        @keyframes link-entrar {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* filete de ação: o azul é cor exclusiva de ação, como na Imersão */
+
+        .link::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--acao-500);
+            transform: scaleY(0.34);
+            transform-origin: 50% 0;
+            transition: transform 220ms ease-out;
+        }
+
+        .link:hover,
+        .link:focus-visible {
+            background: #191553;
+            border-color: rgba(79, 163, 227, 0.45);
+        }
+
+        .link:hover::before,
+        .link:focus-visible::before {
+            transform: scaleY(1);
+        }
+
+        .link:active {
+            transform: scale(0.988);
+        }
+
+        .link:focus-visible {
+            outline: 2px solid var(--destaque-500);
+            outline-offset: 3px;
+        }
+
+        .link__icone {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            background: rgba(0, 113, 188, 0.14);
+            color: var(--destaque-500);
+        }
+
+        .link__icone svg {
+            width: 21px;
+            height: 21px;
+            display: block;
+        }
+
+        .link__titulo {
+            display: block;
+            font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+            color: #FFFFFF;
+        }
+
+        .link__linha {
+            display: block;
+            margin-top: 3px;
+            font-size: 13.5px;
+            line-height: 1.45;
+            color: var(--texto-claro-fraco);
+            text-wrap: pretty;
+        }
+
+        .link__seta {
+            width: 16px;
+            height: 16px;
+            color: var(--aco-300);
+            transition: transform 160ms ease-out, color 160ms linear;
+        }
+
+        .link:hover .link__seta,
+        .link:focus-visible .link__seta {
+            transform: translateX(3px);
+            color: var(--destaque-500);
+        }
+
+        /* ============================================================
+   5 · RODAPÉ
+   ============================================================ */
+
+        .rodape {
+            padding: 30px 20px 0;
+            text-align: center;
+            font-size: 12px;
+            line-height: 1.6;
+            color: var(--aco-400);
+            animation: link-entrar 520ms ease-out 400ms both;
+        }
+
+        .rodape__marca {
+            font-family: "Plus Jakarta Sans", "Inter", sans-serif;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--aco-300);
+        }
+
+        .rodape p {
+            margin: 8px 0 0;
+        }
+
+        /* ============================================================
+   6 · TELAS MAIORES  (o formato não muda: é um cartão, não um site)
+   ============================================================ */
+
+        @media (min-width: 620px) {
+            :root {
+                --corte: 26px;
+            }
+
+            body {
+                padding: 36px 0;
+            }
+
+            .pagina {
+                border: 1px solid rgba(154, 166, 186, 0.14);
+            }
+
+            .topo__foto {
+                height: 400px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation: none !important;
+                transition-duration: 1ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pagina">
+
+        <header class="topo">
+            <div class="topo__foto">
+                <picture>
+                    <source srcset="img/yuri.webp" type="image/webp">
+                    <img src="img/yuri.jpg" width="1000" height="1250" alt="Yuri Reis" fetchpriority="high" decoding="async">
+                </picture>
+                <div class="topo__veu"></div>
+                <div class="topo__perfuro"></div>
+            </div>
+
+            <div class="identidade">
+                <h1 class="nome">Yuri Reis</h1>
+                <p class="posicionamento">Contador. Ajudo donos de empresa a <strong>enxergar a margem antes de decidir</strong>.</p>
+            </div>
+        </header>
+
+        <main class="links">
+
+            <!-- LINK 1 · ESCRITÓRIO -->
+            <a class="link" href="#">
+                <span class="link__icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 21h18" />
+                        <path d="M5 21V5a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v16" />
+                        <path d="M15 21V10h3a1 1 0 0 1 1 1v10" />
+                        <path d="M8 8h4M8 12h4M8 16h4" />
+                    </svg>
+                </span>
+                <span>
+                    <span class="link__titulo">Escritório</span>
+                    <span class="link__linha">Contabilidade e rotina fiscal.</span>
+                </span>
+                <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h13M12 5l7 7-7 7" />
+                </svg>
+            </a>
+
+            <!-- LINK 2 · INLEAD -->
+            <a class="link" href="#">
+                <span class="link__icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 5h18l-7 8v6l-4 2v-8z" />
+                    </svg>
+                </span>
+                <span>
+                    <span class="link__titulo">Inlead</span>
+                    <span class="link__linha">[A PREENCHER: o que é, em 4 palavras]</span>
+                </span>
+                <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h13M12 5l7 7-7 7" />
+                </svg>
+            </a>
+
+            <!-- LINK 3 · PALESTRAS -->
+            <a class="link" href="#">
+                <span class="link__icone" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="2" width="6" height="11" rx="3" />
+                        <path d="M5 11a7 7 0 0 0 14 0" />
+                        <path d="M12 18v4M9 22h6" />
+                    </svg>
+                </span>
+                <span>
+                    <span class="link__titulo">Palestras</span>
+                    <span class="link__linha">Para palestrar no seu evento.</span>
+                </span>
+                <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M5 12h13M12 5l7 7-7 7" />
+                </svg>
+            </a>
+
+        </main>
+
+        <footer class="rodape">
+            <div class="rodape__marca">Carteira 360º</div>
+            <p>Carteira 360 LTDA &ndash; ME &middot; CNPJ 51.933.101/0001-56<br>Campo Belo, MG</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>

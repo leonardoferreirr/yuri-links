@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="utf-8">
+    <title>og</title>
+    <!-- ============================================================
+     FONTE DA IMAGEM DE PREVIEW (img/og.jpg)
+     Não é uma página do site: é o molde do card de link. Para regerar,
+     abrir em 1200x630 e capturar a tela.
+     ============================================================ -->
+    <style>
+        @font-face {
+            font-family: "Plus Jakarta Sans";
+            font-weight: 400 800;
+            src: url(fonts/plus-jakarta-sans-latin.woff2) format("woff2");
+        }
+
+        @font-face {
+            font-family: "Inter";
+            font-weight: 400 600;
+            src: url(fonts/inter-latin.woff2) format("woff2");
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            width: 1200px;
+            height: 630px;
+            overflow: hidden;
+            background: #0B0A2E;
+            font-family: "Inter", sans-serif;
+        }
+
+        .card {
+            position: relative;
+            width: 1200px;
+            height: 630px;
+            display: grid;
+            grid-template-columns: 1fr 470px;
+        }
+
+        .texto {
+            padding: 0 0 0 76px;
+            align-self: center;
+        }
+
+        .nome {
+            margin: 0;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 82px;
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+            color: #FFFFFF;
+        }
+
+        .linha {
+            margin: 22px 0 0;
+            font-size: 27px;
+            line-height: 1.45;
+            letter-spacing: -0.01em;
+            color: #9AA6BA;
+            max-width: 17ch;
+        }
+
+        .linha strong {
+            font-weight: 500;
+            color: #4FA3E3;
+        }
+
+        .marca {
+            margin-top: 44px;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 17px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #5C6577;
+        }
+
+        .foto {
+            position: relative;
+            /* mesmo corte de 2,5° da página */
+            clip-path: polygon(46px 0, 100% 0, 100% 100%, 0 100%);
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: 50% 12%;
+            display: block;
+        }
+
+        .foto::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, #0B0A2E 0%, rgba(11, 10, 46, 0.55) 22%, rgba(11, 10, 46, 0) 58%);
+        }
+
+        .perfuro {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 470px;
+            width: 1px;
+            background-image: repeating-linear-gradient(to bottom, #5C6577 0 3px, transparent 3px 7px);
+            transform-origin: 50% 0;
+            transform: rotate(-4.2deg);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="card">
+        <div class="texto">
+            <h1 class="nome">Yuri Reis</h1>
+            <p class="linha">Contador. Ajudo donos de empresa a <strong>enxergar a margem antes de decidir</strong>.</p>
+            <div class="marca">Carteira 360º</div>
+        </div>
+        <div class="foto">
+            <img src="img/yuri.jpg" alt="">
+        </div>
+        <div class="perfuro"></div>
+    </div>
+</body>
+
+</html>
