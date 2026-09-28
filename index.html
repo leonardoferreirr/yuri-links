@@ -143,20 +143,23 @@
         }
 
         /* ============================================================
-   3 · CABEÇALHO  (retrato sangrando + corte diagonal da marca)
+   3 · CAPA  (retrato + identidade + destinos)
 
-   A altura do retrato é o orçamento da primeira tela. Ela cedeu de
-   330px para 300px quando os três destinos entraram juntos acima da
-   dobra: em 390x844 a pergunta "por onde falo com ele" precisa se
-   resolver sem rolagem, e a foto é a única coisa que podia ceder.
+   Uma grade de duas linhas no celular: a foto e a identidade dividem a
+   primeira celula, os destinos ficam na segunda. No desktop a mesma
+   grade abre em duas colunas e a identidade sai de cima da foto sem que
+   o HTML mude, que e a razao de a identidade ser irma da foto e nao
+   filha dela.
    ============================================================ */
 
-        .topo {
-            position: relative;
-            isolation: isolate;
+        .capa {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto;
         }
 
-        .topo__foto {
+        .capa__foto {
+            grid-area: 1 / 1;
             position: relative;
             height: min(36svh, 300px);
             /* o corte de 2,5° é a assinatura da página da Imersão */
@@ -167,7 +170,7 @@
             overflow: hidden;
         }
 
-        .topo__foto img {
+        .capa__foto img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -178,7 +181,7 @@
 
         /* véu: funde o fundo do estúdio com o marinho e devolve contraste ao nome */
 
-        .topo__veu {
+        .capa__veu {
             position: absolute;
             inset: 0;
             background:
@@ -193,7 +196,7 @@
 
         /* linha perfurada acompanhando o corte, igual ao bilhete da Imersão */
 
-        .topo__perfuro {
+        .capa__perfuro {
             position: absolute;
             left: 0;
             bottom: 0;
@@ -206,11 +209,12 @@
             pointer-events: none;
         }
 
+        /* mesma célula da foto, assentada na base dela */
+
         .identidade {
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
+            grid-area: 1 / 1;
+            align-self: end;
+            z-index: 1;
             padding: 0 24px calc(var(--corte) + 8px);
             text-align: center;
         }
@@ -250,6 +254,7 @@
    ============================================================ */
 
         .links {
+            grid-area: 2 / 1;
             display: grid;
             gap: 10px;
             padding: 20px 20px 0;
@@ -839,7 +844,15 @@
         }
 
         /* ============================================================
-   7 · TELAS MAIORES  (o formato não muda: é um cartão, não um site)
+   7 · TELAS MAIORES
+
+   O celular manda no desenho, mas o desktop deixou de ser um cartao de
+   460px no meio do vazio: a pagina virou site abaixo da dobra, e uma
+   coluna estreita numa tela de 1440 nao sustenta mais isso.
+
+   Em 900px a capa abre em duas colunas, identidade e destinos a
+   esquerda, retrato a direita. Os blocos seguem a mesma logica: o que
+   estava empilhado fica lado a lado.
    ============================================================ */
 
         /* iPhone SE e afins: a caixa de texto do cartão fica sem largura
@@ -895,7 +908,10 @@
             }
         }
 
-        @media (min-width: 620px) {
+        /* faixa do meio: tablet e celular deitado. O cartao ganha moldura,
+   o formato nao muda ainda. */
+
+        @media (min-width: 620px) and (max-width: 899px) {
             :root {
                 --corte: 26px;
             }
@@ -908,8 +924,252 @@
                 border: 1px solid rgba(154, 166, 186, 0.14);
             }
 
-            .topo__foto {
+            .capa__foto {
                 height: 360px;
+            }
+        }
+
+        /* ------------------------------------------------------------
+   DESKTOP
+   ------------------------------------------------------------ */
+
+        @media (min-width: 900px) {
+            :root {
+                --corte: 0px;
+            }
+
+            body {
+                padding: 0;
+            }
+
+            /* o gradiente sobe para o body: com ele so na coluna, a
+   .pagina virava uma caixa de 1180px desenhada contra o fundo
+   chapado, e a borda dela aparecia dos dois lados */
+
+            /* cor de base separada da imagem, e sem background-attachment:
+   fixed. O shorthand `background:` zerava a cor de base, e o fixed
+   dimensiona o gradiente pela viewport, entao abaixo da primeira
+   tela nao sobrava nem gradiente nem cor: a pagina ficava branca
+   com o texto claro por cima, invisivel. */
+
+            body {
+                background-color: var(--marinho-900);
+                background-image:
+                    radial-gradient(90% 40% at 18% 0%, rgba(0, 110, 185, 0.26) 0%, rgba(0, 110, 185, 0) 62%),
+                    radial-gradient(80% 34% at 88% 100%, rgba(10, 10, 18, 0.9) 0%, rgba(10, 10, 18, 0) 66%),
+                    linear-gradient(155deg, var(--marinho-500) 0%, var(--marinho-900) 42%, var(--deck-preto) 100%);
+                background-repeat: no-repeat;
+            }
+
+            .pagina {
+                max-width: 1180px;
+                padding-bottom: 0;
+                background: none;
+            }
+
+            /* a capa ocupa a tela inteira, menos uma folga para a proxima
+   secao aparecer por baixo e pedir o scroll */
+
+            .capa {
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.02fr);
+                grid-template-rows: auto auto;
+                align-content: center;
+                min-height: min(82svh, 700px);
+                column-gap: 40px;
+                padding: 0 44px;
+            }
+
+            /* o retrato atravessa as duas linhas, na coluna da direita */
+
+            .capa__foto {
+                grid-area: 1 / 2 / 3 / 3;
+                height: min(74svh, 620px);
+                align-self: center;
+                clip-path: none;
+                /* mascara, nao veu: o veu pintava marinho chapado sobre um
+   fundo que ali e indigo, e a borda da foto continuava dura. A
+   mascara apaga o pixel, entao funde com o que estiver atras,
+   seja qual for a cor. Custa o mesmo que um gradiente. */
+                -webkit-mask-image:
+                    linear-gradient(to right, transparent 0%, #000 32%, #000 88%, transparent 100%),
+                    linear-gradient(to bottom, transparent 0%, #000 11%, #000 82%, transparent 100%);
+                -webkit-mask-composite: source-in;
+                mask-image:
+                    linear-gradient(to right, transparent 0%, #000 32%, #000 88%, transparent 100%),
+                    linear-gradient(to bottom, transparent 0%, #000 11%, #000 82%, transparent 100%);
+                mask-composite: intersect;
+            }
+
+            .capa__foto img {
+                object-position: 50% 12%;
+            }
+
+            /* no celular o veu funde a base da foto no fundo; aqui quem
+   precisa sumir e a borda esquerda, que e a que encosta no texto.
+   Duas paradas, nao uma: com uma so o degrade come o rosto. */
+
+            .capa__veu {
+                background: linear-gradient(to right,
+                    rgba(11, 10, 46, 0.55) 0%,
+                    rgba(11, 10, 46, 0) 38%);
+            }
+
+            /* a perfuracao volta a ser horizontal e reta, rente a base da
+   foto: o corte diagonal nao existe nesta largura */
+
+            .capa__perfuro {
+                display: none;
+            }
+
+            .identidade {
+                grid-area: 1 / 1;
+                align-self: end;
+                padding: 0 0 22px;
+                text-align: left;
+            }
+
+            .nome {
+                font-size: clamp(46px, 4.4vw, 60px);
+                letter-spacing: -0.035em;
+            }
+
+            .posicionamento {
+                margin: 14px 0 0;
+                font-size: 18px;
+                line-height: 1.45;
+                max-width: 26ch;
+            }
+
+            .links {
+                grid-area: 2 / 1;
+                align-self: start;
+                padding: 0;
+                gap: 11px;
+            }
+
+            .link {
+                min-height: 88px;
+                grid-template-columns: 66px 1fr 16px;
+            }
+
+            .link__titulo {
+                font-size: 18px;
+            }
+
+            .link__linha {
+                font-size: 14px;
+            }
+
+            /* os blocos param de empilhar */
+
+            .bloco {
+                padding: 48px 44px 0;
+            }
+
+            .bloco__t {
+                font-size: 30px;
+            }
+
+            .bloco__l {
+                font-size: 16px;
+                max-width: 58ch;
+                margin-bottom: 24px;
+            }
+
+            .portas {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px;
+            }
+
+            .porta {
+                padding: 22px 24px 24px;
+            }
+
+            .porta__q {
+                font-size: 17px;
+            }
+
+            .porta__d {
+                font-size: 14.5px;
+            }
+
+            /* palestras: foto a esquerda, texto a direita */
+
+            .palco {
+                display: grid;
+                grid-template-columns: 1.15fr 1fr;
+                align-items: stretch;
+            }
+
+            .palco__foto {
+                aspect-ratio: auto;
+                min-height: 320px;
+            }
+
+            /* aqui o veu escurece a direita, que e o lado que encosta no
+   texto, e nao a base */
+
+            .palco__veu {
+                background: linear-gradient(to right,
+                    rgba(11, 10, 46, 0) 52%,
+                    rgba(11, 10, 46, 0.6) 82%,
+                    rgba(11, 10, 46, 0.92) 100%);
+            }
+
+            .palco__corpo {
+                align-self: center;
+                padding: 32px 34px;
+            }
+
+            .palco__t {
+                font-size: 24px;
+                letter-spacing: -0.025em;
+            }
+
+            .palco__l {
+                font-size: 15px;
+                margin-bottom: 20px;
+            }
+
+            .numeros {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .numeros b {
+                font-size: 34px;
+            }
+
+            .fechar {
+                margin-top: 64px;
+                padding: 56px 44px 48px;
+            }
+
+            .fechar::before {
+                width: 900px;
+                height: 900px;
+                top: -110%;
+            }
+
+            .fechar__t {
+                font-size: 30px;
+            }
+
+            .fechar__l {
+                font-size: 16px;
+                max-width: 42ch;
+                margin-bottom: 24px;
+            }
+
+            .acao--larga {
+                width: auto;
+                min-width: 300px;
+                justify-self: center;
+                margin: 0 auto;
+            }
+
+            .rodape {
+                padding: 30px 44px 44px;
+                font-size: 12.5px;
             }
         }
 
@@ -927,21 +1187,29 @@
 <body>
     <div class="pagina">
 
-        <header class="topo">
-            <div class="topo__foto">
+        <!-- ============================================================
+             A CAPA
+
+             Tres pecas numa grade: a foto, a identidade e os destinos.
+             No celular a identidade divide a celula com a foto e assenta
+             sobre a base dela; no desktop a mesma grade vira duas colunas,
+             com a identidade e os destinos a esquerda e a foto a direita,
+             sem trocar uma linha do HTML.
+             ============================================================ -->
+        <header class="capa">
+            <div class="capa__foto">
                 <picture>
                     <source srcset="img/yuri.webp" type="image/webp">
                     <img src="img/yuri.jpg" width="1000" height="1250" alt="Yuri Reis" fetchpriority="high" decoding="async">
                 </picture>
-                <div class="topo__veu"></div>
-                <div class="topo__perfuro"></div>
+                <div class="capa__veu"></div>
+                <div class="capa__perfuro"></div>
             </div>
 
             <div class="identidade">
                 <h1 class="nome">Yuri Reis</h1>
                 <p class="posicionamento"><span>Ajudo sua empresa a <strong>vender mais</strong></span> <span><strong>e pagar menos impostos</strong> 🚀</span></p>
             </div>
-        </header>
 
         <!-- ============================================================
              O ROTEADOR
@@ -1018,6 +1286,7 @@
             </a>
 
         </main>
+        </header>
 
         <!-- ============================================================
              AS DUAS PORTAS

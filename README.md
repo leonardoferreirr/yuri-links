@@ -2,6 +2,8 @@
 
 Página de links do Yuri Reis. A primeira tela é um roteador: quem chega da bio do Instagram tem uma pergunta só, "por onde eu falo com ele", e resolve isso sem rolar, em 390x844. Abaixo da dobra a página vira site.
 
+No desktop ela deixa de ser uma coluna de 460px no meio do vazio: a partir de 900px a capa abre em duas colunas, identidade e destinos à esquerda, retrato à direita, e os blocos que estavam empilhados ficam lado a lado.
+
 Identidade em duas camadas, como manda a marca: o gradiente índigo do deck da Carteira 360º (`#006EB9` → `#1B1464` → `#0A0A12`) é a espinha, e a paleta da Imersão Comercial é o sistema de interface, com o azul `#0071BC` reservado para ação. Plus Jakarta Sans + Inter, corte diagonal de 2,5° com a perfuração de bilhete.
 
 Um arquivo, sem build, sem JavaScript. Fontes auto-hospedadas: a página não depende do Google Fonts.
@@ -58,12 +60,19 @@ O que precisa vir do Yuri, em ordem de impacto:
 4. **Domínio.** As URLs absolutas apontam para `yuri-links.vercel.app`. Ao apontar um domínio próprio, trocar no `<link rel="canonical">`, no `og:url` e no `og:image` — sem URL absoluta o WhatsApp entrega o link sem imagem.
 5. **Rodapé.** Está com o CNPJ da Carteira 360º, tirado da página da Imersão. Confirmar se é esse ou o do escritório.
 
+## Como a capa funciona nas duas larguras
+
+A capa é uma grade de três peças: `.capa__foto`, `.identidade` e `.links`. No celular a identidade divide a célula com a foto (`grid-area: 1 / 1`) e assenta na base dela; no desktop a mesma grade vira duas colunas e a identidade vai para a esquerda. **É por isso que a identidade é irmã da foto e não filha dela:** filha, ela não teria como sair de cima da foto no desktop sem duplicar markup.
+
+O retrato do desktop funde no fundo por `mask-image`, não por véu pintado. O véu pintava marinho chapado sobre um fundo que ali é índigo, e a borda da foto continuava dura. A máscara apaga o pixel, então funde com o que estiver atrás, seja qual for a cor, e custa o mesmo que um gradiente.
+
 ## Armadilhas já pagas
 
 - **A perfuração do topo dava 4px de rolagem lateral.** Ela usa `width: 101%` para cobrir a diagonal depois de girar, e o `clip-path` esconde a sobra sem impedir o `scrollWidth` de crescer. Quem resolve é o `overflow: hidden` no `.topo__foto`.
 - **`animation-timeline: view()` não existe no Safari.** Por isso o estado final dos blocos é o padrão, e a animação só entra dentro do `@supports`: onde não há suporte, o bloco já está visível em vez de invisível para sempre.
 - **O CNPJ partia no meio em 320px** e parecia erro de digitação. Vai com `white-space: nowrap`.
 - **Blur, backdrop-filter e blend-mode ficam de fora.** O travamento no Safari não vem de um filtro, vem do conjunto. Os círculos concêntricos do fechamento são `repeating-radial-gradient`, que custa uma pintura e nenhum elemento.
+- **O fundo do desktop quase saiu branco abaixo da primeira tela.** O shorthand `background:` na media query zerava a cor de base, e `background-attachment: fixed` dimensiona o gradiente pela viewport: abaixo da dobra não sobrava nem gradiente nem cor, e o texto claro ficava invisível sobre branco. Vai como `background-color` e `background-image` separados, sem `fixed`. Só apareceu no screenshot de página inteira, nunca na primeira tela.
 
 ## Medição
 
