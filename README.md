@@ -76,6 +76,8 @@ O retrato do desktop funde no fundo por `mask-image`, não por véu pintado. O v
 
 ## Medição
 
-Lighthouse mobile (`--throttling-method=devtools`, nunca `simulate`, que infla o LCP): performance **99**, acessibilidade **100**, boas práticas **100**, SEO **100**. LCP 2,0 s, CLS **0**, TBT 0 ms.
+Lighthouse mobile em `https://www.yurievreis.com/` (`--throttling-method=devtools`, nunca `simulate`, que infla o LCP): performance **98**, acessibilidade **100**, boas práticas **100**, SEO **100**. LCP 2,2 s, CLS **0**, TBT 0 ms.
 
-Medido com a máquina descarregada. Com carga alta o mesmo arquivo mede bem menos, então vale conferir o `uptime` antes de acreditar em qualquer número.
+Medido na URL pública, que é o número que vale: a Vercel entrega brotli e HTTP/2. Em `localhost` a mesma página mede 99.
+
+**Confira o `uptime` antes de acreditar em qualquer número.** Com a máquina carregada o Lighthouse não mede: ele devolve `NO_FCP` e desiste, ou devolve um número que é da carga e não do arquivo. Se precisar medir com a máquina ocupada, a API do PageSpeed da Google roda no servidor deles e é imune a isso (mas tem cota diária baixa sem chave).
