@@ -1,8 +1,25 @@
 # yuri-links
 
-Página de links (estilo Linktree) do Yuri Reis, na identidade visual da página da Imersão Comercial: marinho `#0B0A2E`, azul de ação `#0071BC`, Plus Jakarta Sans + Inter, corte diagonal de 2,5° com a perfuração de bilhete.
+Página de links do Yuri Reis. A primeira tela é um roteador: quem chega da bio do Instagram tem uma pergunta só, "por onde eu falo com ele", e resolve isso sem rolar, em 390x844. Abaixo da dobra a página vira site.
+
+Identidade em duas camadas, como manda a marca: o gradiente índigo do deck da Carteira 360º (`#006EB9` → `#1B1464` → `#0A0A12`) é a espinha, e a paleta da Imersão Comercial é o sistema de interface, com o azul `#0071BC` reservado para ação. Plus Jakarta Sans + Inter, corte diagonal de 2,5° com a perfuração de bilhete.
 
 Um arquivo, sem build, sem JavaScript. Fontes auto-hospedadas: a página não depende do Google Fonts.
+
+## A ordem da página
+
+| Bloco | O que faz |
+| --- | --- |
+| Topo | Retrato, nome, posicionamento |
+| Os três destinos | O roteador. Cabe acima da dobra em 390x844 e em 320x568 |
+| Duas portas, dois momentos | Separa o escritório da Carteira 360º. É a camada que faltava |
+| Yuri no palco | Palestras, com a foto de palco em tamanho de verdade |
+| O escritório em números | **Comentado no HTML.** Ver "Pendências" |
+| Vamos fazer a sua conta | Fechamento, devolve para o WhatsApp do escritório |
+
+**Por que o cartão de palestras perdeu a foto de capa:** ela era a maior peça da página e empurrava o formulário de aplicação para fora da primeira tela. Convite para palestrar é o destino que menos gera receita, e estava ocupando o orçamento de atenção dos dois que sustentam o negócio. A foto continua no site, no bloco de palestras.
+
+**Por que o bloco de números nasce desligado:** ele depende de dado que ainda não existe. Publicar quatro `[A PREENCHER]` no ar é pior do que não ter o bloco, porque quem chega da bio lê a página, não o nosso backlog. O HTML e o CSS estão prontos: para ligar, apague o comentário em volta da `<section>` e troque os quatro valores.
 
 ## Os três links
 
@@ -33,10 +50,23 @@ Para passar o cartão do escritório ao formato de capa: adicione `link--capa` n
 
 ## Pendências
 
-1. **Foto do escritório**, para o primeiro cartão virar capa como o de palestras.
-2. **Domínio.** As URLs absolutas apontam para `yuri-links.vercel.app`. Ao apontar um domínio próprio, trocar no `<link rel="canonical">`, no `og:url` e no `og:image` — sem URL absoluta o WhatsApp entrega o link sem imagem.
-3. **Rodapé.** Está com o CNPJ da Carteira 360º, tirado da página da Imersão. Confirmar se é esse ou o do escritório, e se entra o @ do Instagram.
+O que precisa vir do Yuri, em ordem de impacto:
+
+1. **Os quatro números do bloco de prova.** Anos de escritório, empresas atendidas hoje, cidades e palestras dadas. Nenhum foi estimado e nenhum está no ar. Com eles o bloco liga em dois minutos.
+2. **Foto do escritório**, para o primeiro cartão virar capa como o de palestras. Formato 1.85:1, por exemplo 820x443.
+3. **Depoimento de cliente**, se e quando houver. Nome, empresa e uma frase que diga um número, não um adjetivo. Sem isso não existe bloco de depoimento, porque depoimento inventado é pior que nenhum.
+4. **Domínio.** As URLs absolutas apontam para `yuri-links.vercel.app`. Ao apontar um domínio próprio, trocar no `<link rel="canonical">`, no `og:url` e no `og:image` — sem URL absoluta o WhatsApp entrega o link sem imagem.
+5. **Rodapé.** Está com o CNPJ da Carteira 360º, tirado da página da Imersão. Confirmar se é esse ou o do escritório.
+
+## Armadilhas já pagas
+
+- **A perfuração do topo dava 4px de rolagem lateral.** Ela usa `width: 101%` para cobrir a diagonal depois de girar, e o `clip-path` esconde a sobra sem impedir o `scrollWidth` de crescer. Quem resolve é o `overflow: hidden` no `.topo__foto`.
+- **`animation-timeline: view()` não existe no Safari.** Por isso o estado final dos blocos é o padrão, e a animação só entra dentro do `@supports`: onde não há suporte, o bloco já está visível em vez de invisível para sempre.
+- **O CNPJ partia no meio em 320px** e parecia erro de digitação. Vai com `white-space: nowrap`.
+- **Blur, backdrop-filter e blend-mode ficam de fora.** O travamento no Safari não vem de um filtro, vem do conjunto. Os círculos concêntricos do fechamento são `repeating-radial-gradient`, que custa uma pintura e nenhum elemento.
 
 ## Medição
 
-Lighthouse mobile (`--throttling-method=devtools`): performance 99, acessibilidade 100, boas práticas 100, SEO 100.
+Lighthouse mobile (`--throttling-method=devtools`, nunca `simulate`, que infla o LCP): performance **99**, acessibilidade **100**, boas práticas **100**, SEO **100**. LCP 2,0 s, CLS **0**, TBT 0 ms.
+
+Medido com a máquina descarregada. Com carga alta o mesmo arquivo mede bem menos, então vale conferir o `uptime` antes de acreditar em qualquer número.
