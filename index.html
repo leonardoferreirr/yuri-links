@@ -755,7 +755,7 @@
         .fechar {
             position: relative;
             margin-top: 34px;
-            padding: 30px 20px 26px;
+            padding: 30px 20px 34px;
             text-align: center;
             overflow: hidden;
             border-top: 1px solid rgba(154, 166, 186, 0.12);
@@ -798,49 +798,6 @@
             line-height: 1.55;
             color: var(--texto-claro-fraco);
             text-wrap: pretty;
-        }
-
-        /* ============================================================
-   6 · RODAPÉ
-   ============================================================ */
-
-        .rodape {
-            padding: 24px 20px 0;
-            text-align: center;
-            font-size: 12px;
-            line-height: 1.6;
-            color: var(--aco-400);
-        }
-
-        .rodape__marca {
-            font-family: "Plus Jakarta Sans", "Inter", sans-serif;
-            font-size: 12px;
-            font-weight: 600;
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--aco-300);
-        }
-
-        .rodape p {
-            margin: 8px 0 0;
-        }
-
-        /* o CNPJ partido no meio em 320px parecia erro de digitação */
-
-        .nao-quebra {
-            white-space: nowrap;
-        }
-
-        .rodape a {
-            color: var(--aco-300);
-            text-decoration: none;
-            border-bottom: 1px solid rgba(154, 166, 186, 0.3);
-        }
-
-        .rodape a:hover,
-        .rodape a:focus-visible {
-            color: var(--destaque-500);
-            border-bottom-color: var(--destaque-500);
         }
 
         /* ============================================================
@@ -1139,9 +1096,12 @@
                 font-size: 34px;
             }
 
+            /* sem rodape, este bloco e o fim da pagina: o chao dele deixou
+   de ser folga e passou a ser o fecho do documento */
+
             .fechar {
                 margin-top: 64px;
-                padding: 56px 44px 48px;
+                padding: 56px 44px 76px;
             }
 
             .fechar::before {
@@ -1165,11 +1125,6 @@
                 min-width: 300px;
                 justify-self: center;
                 margin: 0 auto;
-            }
-
-            .rodape {
-                padding: 30px 44px 44px;
-                font-size: 12.5px;
             }
         }
 
@@ -1224,8 +1179,9 @@
              ============================================================ -->
         <main class="links">
 
-            <!-- LINK 1 · ESCRITÓRIO (WhatsApp)
-                 Os links 1 e 2 caem no mesmo número. A mensagem pronta é o que
+            <!-- LINK 1 · ESCRITÓRIO (WhatsApp 35 99772-0153)
+                 Palestras caiu num numero proprio em 28/09, o comercial
+                 35 99960-5924. A mensagem pronta continua em todos: e o que
                  diz ao Yuri, na primeira linha da conversa, por qual porta a
                  pessoa entrou. Para tirar, apague tudo a partir do "?". -->
             <a class="link link--principal" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20falar%20sobre%20a%20contabilidade%20da%20minha%20empresa." target="_blank" rel="noopener">
@@ -1267,8 +1223,8 @@
                 </svg>
             </a>
 
-            <!-- LINK 3 · PALESTRAS (mesmo WhatsApp do link 1, outra mensagem) -->
-            <a class="link" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
+            <!-- LINK 3 · PALESTRAS (WhatsApp comercial 35 99960-5924) -->
+            <a class="link" href="https://wa.me/5535999605924?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
                 <span class="link__midia" aria-hidden="true">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M12 3a3 3 0 0 1 3 3v5a3 3 0 0 1-6 0V6a3 3 0 0 1 3-3z" />
@@ -1339,7 +1295,7 @@
                 <div class="palco__corpo">
                     <h2 class="palco__t">Yuri no palco do seu evento</h2>
                     <p class="palco__l">Comercial, margem e imposto explicados para dono de empresa, com a conta feita na frente da plateia.</p>
-                    <a class="acao" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
+                    <a class="acao" href="https://wa.me/5535999605924?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
                         Convidar para palestrar
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                             <path d="M5 12h13M12 5l7 7-7 7" />
@@ -1391,12 +1347,6 @@
                 </svg>
             </a>
         </section>
-
-        <footer class="rodape">
-            <div class="rodape__marca">Carteira 360º</div>
-            <p>Carteira 360 LTDA &ndash; ME<br><span class="nao-quebra">CNPJ 51.933.101/0001-56</span> &middot; Campo Belo, MG</p>
-            <p><a href="https://instagram.com/yurievreis" target="_blank" rel="noopener">@yurievreis</a></p>
-        </footer>
 
     </div>
 </body>

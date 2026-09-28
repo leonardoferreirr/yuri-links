@@ -28,10 +28,12 @@ Um arquivo, sem build, sem JavaScript. Fontes auto-hospedadas: a página não de
 | Cartão | Destino |
 | --- | --- |
 | Falar com o escritório | `wa.me/5535997720153` com mensagem pronta sobre contabilidade |
-| Formulário de aplicação | `quiz.carteira360.com.br` |
-| Convidar para palestrar | `wa.me/5535997720153` com mensagem pronta sobre palestra |
+| Formulário de aplicação | `quiz.carteira360.com.br` — **fora do ar, ver abaixo** |
+| Convidar para palestrar | `wa.me/5535999605924` (comercial) com mensagem pronta sobre palestra |
 
-Os dois cartões de WhatsApp caem no mesmo número, então cada um leva uma mensagem pronta diferente: é o que diz ao Yuri, na primeira linha da conversa, por qual porta a pessoa entrou. Para tirar, apague tudo a partir do `?` no `href`.
+Cada link leva uma mensagem pronta: é o que diz ao Yuri, na primeira linha da conversa, por qual porta a pessoa entrou. Para tirar, apague tudo a partir do `?` no `href`. Até 28/09 os dois caíam no mesmo número; palestras passou a ter o número comercial próprio.
+
+> **O link do formulário de aplicação está quebrado.** `quiz.carteira360.com.br` não resolve em nenhum DNS (conferido no 8.8.8.8 e no 1.1.1.1), e `carteira360.com.br/quiz` devolve a página de placeholder do FlutterFlow, com "Page Title" e o corpo vazio. Quem clica no cartão não chega a lugar nenhum. O destino certo precisa vir do Yuri.
 
 ## Dois formatos de cartão
 
@@ -54,6 +56,7 @@ Para passar o cartão do escritório ao formato de capa: adicione `link--capa` n
 
 O que precisa vir do Yuri, em ordem de impacto:
 
+0. **Para onde aponta o formulário de aplicação.** O subdomínio do quiz saiu do ar e o cartão hoje leva a lugar nenhum. É a pendência mais urgente das listadas aqui, porque é um dos três destinos da página.
 1. **Os quatro números do bloco de prova.** Anos de escritório, empresas atendidas hoje, cidades e palestras dadas. Nenhum foi estimado e nenhum está no ar. Com eles o bloco liga em dois minutos.
 2. **Foto do escritório**, para o primeiro cartão virar capa como o de palestras. Formato 1.85:1, por exemplo 820x443.
 3. **Depoimento de cliente**, se e quando houver. Nome, empresa e uma frase que diga um número, não um adjetivo. Sem isso não existe bloco de depoimento, porque depoimento inventado é pior que nenhum.
