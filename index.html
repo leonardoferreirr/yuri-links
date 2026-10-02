@@ -535,12 +535,23 @@
             gap: 10px;
         }
 
+        /* os dois cartoes sao espelhados: a grade ja os deixa da mesma altura,
+   e o display:flex com margin-top:auto no botao alinha as duas maçanetas na
+   mesma linha mesmo quando um texto quebra e o outro nao */
+
         .porta {
             position: relative;
+            display: flex;
+            flex-direction: column;
             padding: 17px 18px 18px;
             background: rgba(20, 16, 74, 0.55);
             border: 1px solid rgba(154, 166, 186, 0.15);
             border-left: 2px solid rgba(79, 163, 227, 0.5);
+        }
+
+        .porta__acao {
+            margin-top: auto;          /* desce o botao ate o pe do cartao */
+            align-self: start;         /* sem esticar na largura toda */
         }
 
         .porta__q {
@@ -553,34 +564,15 @@
             color: #FFFFFF;
         }
 
+        /* a margem de baixo e o respiro minimo quando o cartao enche: com o
+   margin-top:auto do botao ela so aparece se nao sobrar folga */
+
         .porta__d {
-            margin: 6px 0 0;
+            margin: 6px 0 14px;
             font-size: 13.5px;
             line-height: 1.5;
             color: var(--texto-claro-fraco);
             text-wrap: pretty;
-        }
-
-        /* a lista de contas é o discurso do Yuri em estado bruto: número,
-   não adjetivo. Fica em fonte tabular para as vírgulas alinharem. */
-
-        .porta__contas {
-            margin: 9px 0 0;
-            padding: 0;
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px 6px;
-        }
-
-        .porta__contas li {
-            font-size: 12px;
-            line-height: 1.4;
-            letter-spacing: 0.005em;
-            color: var(--aco-300);
-            padding: 3px 9px;
-            border: 1px solid rgba(154, 166, 186, 0.2);
-            border-radius: 2px;
         }
 
         /* ------------------------------------------------------------
@@ -857,11 +849,6 @@
 
             .porta {
                 padding: 15px 15px 16px;
-            }
-
-            .porta__contas li {
-                font-size: 11.5px;
-                padding: 3px 7px;
             }
         }
 
@@ -1198,7 +1185,7 @@
                 </span>
                 <span class="link__texto">
                     <span class="link__titulo">Falar com o escritório</span>
-                    <span class="link__linha">Contabilidade para quem já vende.</span>
+                    <span class="link__linha">Pague menos impostos</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
@@ -1216,7 +1203,7 @@
                 </span>
                 <span class="link__texto">
                     <span class="link__titulo">Formulário de aplicação</span>
-                    <span class="link__linha">Primeiro passo na Carteira 360º.</span>
+                    <span class="link__linha">Venda mais</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
@@ -1234,7 +1221,7 @@
                 </span>
                 <span class="link__texto">
                     <span class="link__titulo">Convidar para palestrar</span>
-                    <span class="link__linha">Yuri no palco do seu evento.</span>
+                    <span class="link__linha">Leve pro seu evento</span>
                 </span>
                 <svg class="link__seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
@@ -1250,29 +1237,40 @@
              Escritório e Carteira 360º não são o mesmo serviço, e os dois
              primeiros cartões acima não têm como dizer isso em uma linha.
              Este bloco existe para a pessoa saber em qual porta ela está
-             antes de bater, e é tudo informação verificável: nenhum número,
-             nenhuma promessa de resultado.
+             antes de bater.
+
+             02/10: a página inteira passou a girar em torno de uma frase só,
+             vender mais e pagar menos impostos, e os dois cartões viraram as
+             duas metades dela. Saiu a lista de contas do cartão da esquerda.
+             Os dois são espelhados de propósito: mesma estrutura, mesmo peso,
+             e cada um com o seu botão, senão o da esquerda vira uma porta sem
+             maçaneta.
              ============================================================ -->
         <section class="bloco revela">
             <h2 class="bloco__t">Duas portas, dois momentos</h2>
-            <p class="bloco__l">Uma resolve a sua contabilidade. A outra entra no seu comercial. Nem toda empresa precisa das duas ao mesmo tempo.</p>
+            <p class="bloco__l">Uma pra pagar menos. Outra pra vender mais.</p>
 
             <div class="portas">
                 <div class="porta">
-                    <span class="porta__q">Você já vende, e a contabilidade não acompanha</span>
-                    <p class="porta__d">O escritório cuida da apuração, do imposto no regime certo e da conta feita antes da decisão, não depois dela.</p>
-                    <ul class="porta__contas">
-                        <li>Custo</li>
-                        <li>Imposto</li>
-                        <li>Taxa de maquininha</li>
-                        <li>Prazo de recebimento</li>
-                        <li>Limite de desconto</li>
-                    </ul>
+                    <span class="porta__q">Pague menos impostos.</span>
+                    <p class="porta__d">Seu regime certo, sem imposto a mais.</p>
+                    <a class="acao porta__acao" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20falar%20sobre%20a%20contabilidade%20da%20minha%20empresa." target="_blank" rel="noopener">
+                        Quero pagar menos
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h13M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
                 </div>
 
                 <div class="porta">
-                    <span class="porta__q">Você já vende, e a margem não fecha</span>
-                    <p class="porta__d">A Carteira 360º entra no comercial: diagnóstico das cinco áreas, oferta, processo de venda e o que cada negócio fechado deixa no caixa. Começa pelo formulário de aplicação.</p>
+                    <span class="porta__q">Venda mais.</span>
+                    <p class="porta__d">Estruturamos seu comercial pra vender com lucro.</p>
+                    <a class="acao porta__acao" href="https://quiz.360carteira.com.br/" target="_blank" rel="noopener">
+                        Quero vender mais
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M5 12h13M12 5l7 7-7 7" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </section>
@@ -1293,8 +1291,8 @@
                     <div class="palco__veu"></div>
                 </div>
                 <div class="palco__corpo">
-                    <h2 class="palco__t">Yuri no palco do seu evento</h2>
-                    <p class="palco__l">Comercial, margem e imposto explicados para dono de empresa, com a conta feita na frente da plateia.</p>
+                    <h2 class="palco__t">Palestras</h2>
+                    <p class="palco__l">Vender mais e pagar menos impostos, ao vivo no seu evento.</p>
                     <a class="acao" href="https://wa.me/5535999605924?text=Oi%2C%20Yuri!%20Quero%20te%20convidar%20para%20palestrar." target="_blank" rel="noopener">
                         Convidar para palestrar
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -1338,10 +1336,10 @@
              porta é a dele, e o que falta é o empurrão.
              ============================================================ -->
         <section class="fechar revela">
-            <h2 class="fechar__t">Vamos fazer a sua conta</h2>
-            <p class="fechar__l">Manda o seu cenário no WhatsApp. Se não for caso para o escritório, eu digo na hora.</p>
+            <h2 class="fechar__t">Quanto você pode economizar?</h2>
+            <p class="fechar__l">Chama no WhatsApp.</p>
             <a class="acao acao--larga" href="https://wa.me/5535997720153?text=Oi%2C%20Yuri!%20Quero%20falar%20sobre%20a%20contabilidade%20da%20minha%20empresa." target="_blank" rel="noopener">
-                Falar com o escritório
+                Quero pagar menos
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M5 12h13M12 5l7 7-7 7" />
                 </svg>
